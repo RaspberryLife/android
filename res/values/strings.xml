@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Raspberry Home</string>
+
+    <string name="text_roomName">Livingroom</string>
+    <string name="text_sensorName">Window sensor</string>
+
+</resources>
