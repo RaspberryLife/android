@@ -28,18 +28,6 @@ $RECYCLE.BIN/
 .directory
 
 
-### ArchLinuxPackages ###
-*.tar
-*.tar.*
-*.zip
-*.tgz
-*.log
-*.log.*
-*.sig
-pkg/
-src/
-
-
 ### Gradle ###
 .gradle
 build/

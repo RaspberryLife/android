@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/protobufTest" >
+    <!-- main view container  -->
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <!-- debug output  -->
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/scrollView"
+                android:background="#ffb2b2b2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_Output"/>
+        </ScrollView>
+
+        <!-- controller container  -->
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/scrollView"
+            android:minHeight="100dp"
+            android:layout_height="wrap_content" android:id="@+id/relativeLayout">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Server-IP"
+                android:id="@+id/textView_serverIP"
+                android:paddingBottom="5dp"
+                android:layout_alignBottom="@+id/editText_serverIP"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="22dp"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_serverIP"
+                android:hint="z.B. 192.178.0.1"
+                android:textSize="14sp"
+                android:minWidth="140dp"
+                android:layout_alignBottom="@+id/button_ConnectToServer"
+                android:layout_toLeftOf="@+id/button_ConnectToServer"
+                android:layout_toRightOf="@+id/textView_serverIP"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connect"
+                android:id="@+id/button_ConnectToServer"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="PlainText"
+            android:id="@+id/textView" />
+        <EditText
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextModulId"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/buttonSend"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="RunInstruction"
+            android:id="@+id/textView_runInstruction" />
+        <EditText
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_runInstruction_type"/>
+        <EditText
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_runInstruction_targetId"/>
+        <EditText
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_runInstruction_function"/>
+        <EditText
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_runInstruction_pram"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/buttonSend_runInstruction"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
