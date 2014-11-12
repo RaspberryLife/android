@@ -13,23 +13,29 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hsrw.de.net.NetworkListener;
 import hsrw.de.net.RaspberryLifeClient;
 import hsrw.de.protobuf.ProtoFactory;
-import protobuf.RblProto.*;
+import protobuf.RblProto.RBLMessage;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private EditText ipAddressInput;
     private Button connectToServerButton;
-    private Button authButton;
-    private Button getDataSetButton;
     private RaspberryLifeClient client;
     private TextView outputTextview;
     private ScrollView outputScrollView;
     private EditText plainTextInput;
-    private Button sendButton;
+    private EditText editText_runInstruction_type,
+            editText_runInstruction_targetId,
+            editText_runInstruction_function,
+            editText_runInstruction_pram;
+    private Button sendButton_plaintext;
+    private Button sendButton_runInstruction;
 
     private static int outCount = 0;
 
@@ -43,6 +49,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_protobuftest);
         handler = new Handler();
         outCount = 0;
+        editText_runInstruction_type = (EditText) findViewById(R.id.editText_runInstruction_type);
+        editText_runInstruction_targetId = (EditText) findViewById(R.id.editText_runInstruction_targetId);
+        editText_runInstruction_function = (EditText) findViewById(R.id.editText_runInstruction_function);
+        editText_runInstruction_pram = (EditText) findViewById(R.id.editText_runInstruction_pram);
 
         ipAddressInput = (EditText) findViewById(R.id.editText_serverIP);
         ipAddressInput.setText(getServerIP());
@@ -54,24 +64,48 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         outputTextview = (TextView) findViewById(R.id.textView_Output);
-        getDataSetButton = (Button) findViewById(R.id.button_GetDataSet);
-        getDataSetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDataSet();
-            }
-        });
         outputScrollView = (ScrollView) findViewById(R.id.scrollView);
         plainTextInput = (EditText) findViewById(R.id.editTextModulId);
-        sendButton = (Button) findViewById(R.id.buttonSend);
-        sendButton.setOnClickListener(new View.OnClickListener() {
+        sendButton_plaintext = (Button) findViewById(R.id.buttonSend_plaintext);
+        sendButton_plaintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendPlainText();
             }
         });
+
+        sendButton_runInstruction = (Button) findViewById(R.id.buttonSend_runInstruction);
+        sendButton_runInstruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendInstruction();
+            }
+        });
     }
 
+    private void sendInstruction() {
+        int type =  Integer.parseInt(editText_runInstruction_type.getText().toString());
+        int tId = Integer.parseInt(editText_runInstruction_targetId.getText().toString());
+        int function =  Integer.parseInt(editText_runInstruction_function.getText().toString());
+        int param = Integer.parseInt(editText_runInstruction_pram.getText().toString());
+        RBLMessage.ModelType mt = RBLMessage.ModelType.MODULE_TEMP;
+        switch (type){
+            case 1:
+                mt = RBLMessage.ModelType.MODULE_TEMP;
+                break;
+            case 2:
+                mt = RBLMessage.ModelType.MODULE_OUTLET;
+            break;
+        }
+        List<Integer> intParams = new ArrayList<Integer>();
+        intParams.add(param);
+        RBLMessage.Instruction.Builder ib = ProtoFactory.buildInstructionMessage(function, null,
+                intParams);
+        RBLMessage m  =
+                ProtoFactory.buildRunInstructionMessage(RaspberryLifeClient.CLIENT_ID, mt, tId, ib);
+        client.write(m);
+
+    }
 
     private void connectToServer(){
         if(ipAddressInput.getText().toString().isEmpty()){

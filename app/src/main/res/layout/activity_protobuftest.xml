@@ -76,14 +76,14 @@
             android:text="PlainText"
             android:id="@+id/textView" />
         <EditText
-            android:layout_width="36dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/editTextModulId"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Send"
-            android:id="@+id/buttonSend"/>
+            android:id="@+id/buttonSend_plaintext"/>
 
         </LinearLayout>
 
@@ -101,18 +101,29 @@
         <EditText
             android:layout_width="36dp"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="3"
+            android:hint="typ"
             android:id="@+id/editText_runInstruction_type"/>
         <EditText
             android:layout_width="36dp"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:hint="tId"
             android:id="@+id/editText_runInstruction_targetId"/>
         <EditText
             android:layout_width="36dp"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:hint="fnc"
             android:id="@+id/editText_runInstruction_function"/>
         <EditText
             android:layout_width="36dp"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="prm"
             android:id="@+id/editText_runInstruction_pram"/>
         <Button
             android:layout_width="wrap_content"
